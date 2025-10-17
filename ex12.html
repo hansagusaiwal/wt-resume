@@ -13,6 +13,7 @@
     padding: 20px;
     display: flex;
     justify-content: center;
+    transition: background-color 0.3s, color 0.3s;
   }
 
   .resume-container {
@@ -22,6 +23,7 @@
     width: 100%;
     border-radius: 10px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    transition: background-color 0.3s, box-shadow 0.3s;
   }
 
   header {
@@ -93,6 +95,7 @@
     font-size: 0.9em;
     cursor: default;
     border: 1px solid transparent;
+    transition: all 0.2s;
   }
 
   .projects li, .experience li {
@@ -101,6 +104,21 @@
     border-left: 4px solid #33691e;
     border-radius: 6px;
     margin-bottom: 10px;
+    transition: background-color 0.3s, border-left-color 0.3s;
+  }
+
+  button {
+    margin-bottom: 20px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #00796b;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #004d40;
   }
 
   @media(max-width: 600px){
@@ -116,10 +134,71 @@
       font-size: 1.2em;
     }
   }
+
+  /* Dark mode styles */
+  .dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+
+  .dark-mode .resume-container {
+    background-color: #1e1e1e;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+  }
+
+  .dark-mode header h1, 
+  .dark-mode section h2 {
+    color: #80cbc4;
+  }
+
+  .dark-mode .skill {
+    border: 1px solid #80cbc4;
+  }
+
+  .dark-mode .projects li, 
+  .dark-mode .experience li {
+    background-color: #263238;
+    border-left-color: #80cbc4;
+  }
+
+  .dark-mode a {
+    color: #80cbc4;
+  }
 </style>
+
+<script>
+  // Welcome alert
+  window.addEventListener("load", () => {
+    alert("Welcome to Hansa Gusaiwal's Resume!");
+  });
+
+  // Dark/Light mode toggle
+  function toggleTheme() {
+    document.body.classList.toggle("dark-mode");
+  }
+
+  // Skill hover highlighting
+  document.addEventListener("DOMContentLoaded", () => {
+    const skills = document.querySelectorAll(".skill");
+    skills.forEach(skill => {
+      skill.addEventListener("mouseenter", () => {
+        skill.style.backgroundColor = "#004d40";
+        skill.style.color = "#e0f2f1";
+        skill.style.transform = "scale(1.1)";
+      });
+      skill.addEventListener("mouseleave", () => {
+        skill.style.backgroundColor = "#e0f2f1";
+        skill.style.color = "#004d40";
+        skill.style.transform = "scale(1)";
+      });
+    });
+  });
+</script>
 </head>
 <body>
 <div class="resume-container">
+  <button onclick="toggleTheme()">Toggle Dark/Light Mode</button>
+
   <header>
     <h1>Hansa Gusaiwal</h1>
     <h3>Second Year Computer Engineering Student</h3>
